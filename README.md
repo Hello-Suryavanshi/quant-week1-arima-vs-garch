@@ -1,38 +1,34 @@
-📈 Week 1: ARIMA vs GARCH Volatility Prediction
+ARIMA vs GARCH: Predicting Volatility of the S&P 500
 
-This is Week 1 of my "Quant Learning-in-Public" series — a project-based exploration of financial modeling, AI, and data science.
+Objective
+Compare ARIMA and GARCH models in predicting the daily volatility of S&P 500 log returns using 10 years of data.
 
-🔍 Objective
+Models Used
+- ARIMA(1,0,1) model on returns
+- GARCH(1,1) model on returns to model volatility clustering
 
-Compare the performance of ARIMA(1,0,1) and GARCH(1,1) models in forecasting the volatility of daily returns on the S&P 500 Index.
+Evaluation Metrics
+- ARIMA  
+  - RMSE: 0.7455  
+  - MAE: 0.5245
 
-📊 Data
+- GARCH 
+  - RMSE: 0.2743  
+  - MAE: 0.1795
 
-- Source: [Yahoo Finance](https://finance.yahoo.com)
-- Ticker: `^GSPC` (S&P 500 Index)
-- Date Range: `2014-01-01` to `2024-12-31`
+GARCH significantly outperformed ARIMA in forecasting volatility.
 
-⚙️ Methodology
+Visualizations
+- Actual vs predicted volatility plot
+- Volatility model disagreement plot (ARIMA vs GARCH)
 
-1. Download price data using `yfinance`
-2. Compute log returns
-3. Fit an ARIMA(1,0,1) model → estimate volatility via squared residuals
-4. Fit a GARCH(1,1) model → estimate conditional volatility
-5. Compute actual volatility using 21-day rolling standard deviation
-6. Evaluate using RMSE and MAE
-
-📈 Results
-
-| Model | RMSE | MAE |
-|-------|------|-----|
-| ARIMA | 0.7455 | 0.5245 |
-| GARCH | 0.2743 | 0.1795 |
-
-> ✅ GARCH clearly outperformed ARIMA — making it a better candidate for volatility forecasting.
-
-📷 Visuals
-
-![Volatility Comparison](notebook/preview.png)
-
-📦 Requirements
+How to Run
+1. Clone the repo
+2. Install dependencies:
 pip install -r requirements.txt
+3. Run the notebook inside `notebook/`
+
+What I Learned
+- Volatility is not constant — it clusters
+- GARCH is great for capturing real-world financial risk
+- ARIMA is limited in modeling financial return volatility
